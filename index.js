@@ -17,3 +17,56 @@ function Player(name) {
         this.reward += reward;
     }
 }
+//Card constructor start
+function Card() {
+    let name;
+    let suit;
+    let value;
+    this.setValue = function() {
+        let readlineSync = require('readline-sync');
+        if (/^[A-Za-z]+$/.test(name)) {
+            switch (name) {
+                case 'J':
+                case 'Q':
+                case 'K':
+                    value = 10;
+                    break;
+                default:
+                    let aceChoice = readlineSync.question('\n El repartidor te dio un As \n Ingrese 1 o 2 para elegir una opcion \n 1. A = 1 \n 2. A = 11 \n')
+                    switch (Number(aceChoice)) {
+                        case 1:
+                            value = 1;
+                            break;
+                        default:
+                            value = 11;
+                            break;
+                    }
+            }
+        } else { value = Number(name) }
+    }
+    Object.defineProperty(this, 'name', {
+        get: function() {
+            return name;
+        },
+        set: function(value) {
+            if (String(value)) {
+                name = value;
+            }
+        }
+    });
+    Object.defineProperty(this, 'suit', {
+        get: function() {
+            return suit;
+        },
+        set: function(value) {
+            if (String(value)) {
+                suit = value;
+            }
+        }
+    });
+    Object.defineProperty(this, 'value', {
+        get: function() {
+            return value;
+        }
+    });
+}
