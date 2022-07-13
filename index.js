@@ -124,4 +124,26 @@ function Round() { //Round constructor start
             }
         }
     }
+    let checkIsInGame = function() {
+        let sum = player.sumCards();
+        let isInGame;
+        if (sum < 18) {
+            console.log("Your cards are:  " + sum);
+            console.log("-------------------------");
+            let readlineSync = require('readline-sync');
+            let anotherCard = readlineSync.question('\nWould you like another card? (Y/N): ');
+            switch (anotherCard.toLowerCase()) {
+                case 'y':
+                    isInGame = true;
+                    break;
+                default:
+                    isInGame = false;
+                    console.log("-------------------------\n")
+                    console.log("Your cards are: " + sum);
+                    console.log("We're sorry. You lost, try it again!!!");
+                    console.log("This is your reward: " + player.reward);
+                    break;
+            }
+        }
+    }
 }
