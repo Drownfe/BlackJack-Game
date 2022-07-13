@@ -84,4 +84,44 @@ function Round() { //Round constructor start
         firstRound();
         anotherRound();
     }
+    let playAgain = function() {
+        console.log(player.name + ", Lets play again");
+        player.cards = [];
+        firstRound();
+        anotherRound();
+    }
+    let firstRound = function() {
+        newCard();
+        newCard();
+        console.log("-------------------------");
+        console.log('\nThese are your cards for this game: ');
+        player.cards.forEach(card => {
+            console.log(card.name + card.suit);
+        })
+    }
+    let anotherRound = function() {
+        let controlVariable = checkIsInGame();
+        if (controlVariable) {
+            newCard();
+            console.log('\nThese are your cards for this game: ')
+            player.cards.forEach(card => {
+                console.log(card.name + card.suit);
+            })
+            anotherRound();
+        }
+        if (!controlVariable) {
+            let readlineSync = require('readline-sync');
+            let newGame = readlineSync.question("Do you want to try it again? (Y/N):");
+            switch (newGame.toLowerCase()) {
+                case 'y':
+                    playAgain();
+                    break;
+                default:
+                    console.log('-------------------------\n')
+                    console.log("It was a pleasure!!! Please come back!!!");
+                    console.log("This is your reward" + player.reward);
+                    break;
+            }
+        }
+    }
 }
