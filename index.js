@@ -162,6 +162,31 @@ function Round() { //Round constructor start
         console.log("Your acumulated prize is" + player.prize);
         console.log("-------------------------\n")
         isInGame = false;
+        return isInGame;
     }
-    return isInGame;
+    let newCard = function() {
+        let card = new Card();
+        card.name = getRandomItem(cardNames);
+        card.suit = getRandomItem(suits);
+        card.setValue();
+        if (!sameCard(card.name, card.suite)) {
+            player.addCard(card);
+        } else {
+            newCard()
+        }
+    }
+    let getRandomItem = function(item) {
+        return item[Math.floor(Math.random() * item.length)]
+    }
+    let sameCard = function(drawCardName, drawCardSuit) {
+        let isSameCard = false;
+        if (player.cards.length !== 0) {
+            player.cards.forEach(userCard => {
+                if (userCard.name === drawCardName && userCard.suit === drawCardSuit) {
+                    isSameCard = true;
+                }
+            })
+        };
+        return isSameCard;
+    }
 }
