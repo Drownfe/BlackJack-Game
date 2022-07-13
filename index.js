@@ -12,7 +12,7 @@ function Card() { //Card constructor start
                     value = 10;
                     break;
                 default:
-                    let aceChoice = readlineSync.question('\n Acabas de recibir un As \n Ingrese 1 o 2 para elegir que valor deseas darle \n 1. A = 1 \n 2. A = 11 \n')
+                    let aceChoice = readlineSync.question('\n You just receive an A \n Please choose the value that you want to be \n 1. A = 1 \n 2. A = 11 \n')
                     switch (Number(aceChoice)) {
                         case 1:
                             value = 1;
@@ -51,8 +51,7 @@ function Card() { //Card constructor start
     });
 }
 
-//Player constructor start
-function Player(name) {
+function Player(name) { //Player constructor start
     this.name = name;
     this.reward = reward;
     this.cards = [];
@@ -68,5 +67,21 @@ function Player(name) {
     }
     this.rewardAdding = function(reward) {
         this.reward += reward;
+    }
+}
+
+function Round() { //Round constructor start
+    let player = new player();
+    let cardName = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+    let suits = ['♣', '♦', '♥', '♠'];
+    let award = 1000;
+    this.start = function() {
+        let readlineSync = require('readline-sync');
+        console.log("Welcome to Sofka's BlackJack");
+        let userName = readlineSync.question('Please type your name: ');
+        player.name = userName;
+        console.log('Lets play ' + player.name + '!!!');
+        firstRound();
+        anotherRound();
     }
 }
