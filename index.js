@@ -190,3 +190,5 @@ function Round() { //Round constructor start
         return isSameCard;
     }
 }
+const round = new Round();
+round.startGame();
