@@ -146,4 +146,22 @@ function Round() { //Round constructor start
             }
         }
     }
+    if (sum >= 18 && sum <= 21) {
+        isInGame = false;
+        console.log("-------------------------\n")
+        console.log("\nYour cards are: " + sum);
+        console.log("You won!!! you can play again!!!");
+        player.addPrize(prize);
+        console.log("Your acumulated prize is" + player.reward);
+        console.log("-------------------------\n")
+    }
+    if (sum > 21) {
+        console.log("-------------------------\n")
+        console.log("\nYour cards are: " + sum);
+        console.log("\nWe're sorry. You lost, try it again!!!");
+        console.log("Your acumulated prize is" + player.prize);
+        console.log("-------------------------\n")
+        isInGame = false;
+    }
+    return isInGame;
 }
